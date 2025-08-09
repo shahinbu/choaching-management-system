@@ -1,0 +1,2050 @@
+<!DOCTYPE html>
+<html lang="bn" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Bikolpo - Partner Dashboard (Alternative)</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        bangla: ['"Hind Siliguri"', 'sans-serif']
+                    },
+                    colors: {
+                        primaryGreen: '#16a34a',
+                        primaryOrange: '#f97316',
+                        darkBlue: '#1a202c',
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri&display=swap" rel="stylesheet" />
+    <style>
+        /* Custom shadow for better depth */
+        .custom-shadow {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .dark .custom-shadow {
+            box-shadow: 0 10px 15px -3px rgba(255, 255, 255, 0.05), 0 4px 6px -2px rgba(255, 255, 255, 0.025);
+        }
+
+        .rotate-90 {
+            transform: rotate(90deg);
+        }
+
+        /* Custom CSS for sidebar transition and body scroll */
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .body-no-scroll {
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-darkBlue text-gray-800 dark:text-gray-100 font-bangla flex flex-col min-h-screen">
+    <header class="bg-primaryGreen dark:bg-green-800 text-white shadow-lg sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center py-4 md:pl-64">
+            <div class="flex items-center gap-3">
+                <button id="sidebar-toggle" aria-label="Toggle Sidebar" class="md:hidden text-white focus:outline-none">
+                    <svg id="hamburger-icon" class="w-8 h-8" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                    <svg id="close-icon" class="w-8 h-8 hidden" fill="none" stroke="currentColor" stroke-width="2"
+                        stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+                        <path d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+                <a href="partner-index.php" class="flex items-center gap-3">
+                    <img src="assets/images/logo.png" alt="Bikolpo Logo"
+                        class="w-12 h-12 rounded-full border-2 border-white shadow-md" />
+                    <div class="hidden md:block">
+                        <h1 class="text-xl font-bold">Bikolpo Online Test</h1>
+                        <p class="text-xs italic opacity-90">Your Smart Exam Partner</p>
+                    </div>
+                </a>
+            </div>
+            <nav class="hidden md:flex space-x-8 font-semibold text-lg">
+                <a href="partner-index.php" class="hover:text-green-200 transition-colors duration-200">হোম</a>
+                <a href="#" class="hover:text-green-200 transition-colors duration-200">আমাদের সম্পর্কে</a>
+                <a href="#" class="hover:text-green-200 transition-colors duration-200">যোগাযোগ</a>
+            </nav>
+            <div class="flex items-center gap-3">
+                <button id="darkToggle" aria-label="Toggle Dark Mode" title="Toggle Dark Mode"
+                    class="bg-white text-black dark:bg-gray-700 dark:text-white p-2 rounded-full shadow hover:scale-110 transition-transform">
+                    🌙
+                </button>
+            </div>
+        </div>
+    </header>
+    <div class="flex flex-1">
+        <aside id="sidebar"
+            class="sidebar-transition fixed top-0 left-0 h-full w-64 bg-gray-100 dark:bg-gray-800 text-gray-800 dark:text-white p-6 z-50 transform -translate-x-full md:translate-x-0 md:relative md:flex-shrink-0 md:rounded-3xl md:border-r md:border-gray-300 dark:md:border-gray-700">
+            <div class="h-20 md:hidden"></div>
+            <div class="flex items-center justify-center h-24 mb-10 hidden md:flex">
+                <a href="#" class="flex items-center gap-3">
+                    <img src="assets/images/prottay_logo.png" alt="Partner Logo"
+                        class="w-16 h-16 rounded-full border-2 border-primaryGreen shadow-md" />
+                    <div>
+                        <h1 class="text-2xl font-bold text-primaryGreen">প্রত্যয়</h1>
+                        <p class="text-sm italic opacity-90">রংপুর</p>
+                    </div>
+                </a>
+            </div>
+            <nav class="space-y-2 mt-4">
+                <a href="#" id="student-menu-toggle"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                    <svg class="w-6 h-6 text-primaryOrange group-hover:text-primaryGreen" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12 4a4 4 0 0 1 4 4 4 4 0 0 1-4 4 4 4 0 0 1-4-4 4 4 0 0 1 4-4zm0 10c4.42 0 8 1.79 8 4v2H4v-2c0-2.21 3.58-4 8-4z" />
+                    </svg>
+                    <span class="text-md font-semibold">Student</span>
+                </a>
+                <div class="question-menu-container">
+                    <a href="#" id="question-menu-toggle"
+                        class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group relative">
+                        <svg class="w-6 h-6 text-primaryOrange group-hover:text-primaryGreen" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
+                        <span class="text-lg font-semibold">Question</span>
+                        <svg class="w-5 h-5 absolute right-3 rotate-0 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                        </svg>
+                    </a>
+                    <div id="question-submenu" class="ml-8 mt-2 space-y-1 hidden">
+                        <a href="#" id="mcq-menu-toggle" class="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                            <span class="text-md font-medium">MCQ</span>
+                        </a>
+                        <a href="#" id="written-menu-toggle" class="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                            <span class="text-md font-medium">Written</span>
+                        </a>
+                        <a href="#" id="test-menu-toggle" class="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                            <span class="text-md font-medium">Test/Exam</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#" id="course-menu-toggle"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                    <svg class="w-6 h-6 text-primaryOrange group-hover:text-primaryGreen" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm4.59-12.41l-5.17 5.17-2.83-2.83-1.41 1.41 4.24 4.24 6.59-6.59-1.41-1.41z" />
+                    </svg>
+                    <span class="text-lg font-semibold">Course</span>
+                </a>
+                <a href="#" id="subject-menu-toggle"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                    <svg class="w-6 h-6 text-primaryOrange group-hover:text-primaryGreen" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z" />
+                    </svg>
+                    <span class="text-lg font-semibold">Subject</span>
+                </a>
+                <a href="#" id="topic-menu-toggle"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                    <svg class="w-6 h-6 text-primaryOrange group-hover:text-primaryGreen" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z" />
+                    </svg>
+                    <span class="text-lg font-semibold">Topic/Chapter</span>
+                </a>
+                <a href="#" id="batch-menu-toggle"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                    <svg class="w-6 h-6 text-primaryOrange group-hover:text-primaryGreen" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-11h2v6h-2z" />
+                    </svg>
+                    <span class="text-lg font-semibold">Batch</span>
+                </a>
+                <div class="payments-menu-container">
+                    <a href="#" id="payments-menu-toggle"
+                        class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group relative">
+                        <svg class="w-6 h-6 text-primaryOrange group-hover:text-primaryGreen" fill="currentColor"
+                            viewBox="0 0 24 24">
+                            <path
+                                d="M17 12h-5v5h5v-5zM16 1v2H8V1H6v2H5c-1.11 0-1.99.89-1.99 2L3 19c0 1.11.89 2 2 2h14c1.11 0 2-.89 2-2V5c0-1.11-.89-2-2-2h-1V1h-2zm3 18H5V8h14v11z" />
+                        </svg>
+                        <span class="text-lg font-semibold">Payments</span>
+                        <svg class="w-5 h-5 absolute right-3 rotate-0 transition-transform duration-200" fill="currentColor" viewBox="0 0 24 24">
+                            <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                        </svg>
+                    </a>
+                    <div id="payments-submenu" class="ml-8 mt-2 space-y-1 hidden">
+                        <a href="#" id="dues-menu-toggle" class="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                            <span class="text-md font-medium">Dues</span>
+                        </a>
+                        <a href="#" id="receive-menu-toggle" class="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                            <span class="text-md font-medium">Receive</span>
+                        </a>
+                        <a href="#" id="payment-category-menu-toggle" class="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                            <span class="text-md font-medium">Payment Category</span>
+                        </a>
+                        <a href="#" id="assign-payment-menu-toggle" class="flex items-center gap-4 p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                            <span class="text-md font-medium">Assign Payment</span>
+                        </a>
+                    </div>
+                </div>
+                <a href="#"
+                    class="flex items-center gap-4 p-3 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-200 group">
+                    <svg class="w-6 h-6 text-primaryOrange group-hover:text-primaryGreen" fill="currentColor"
+                        viewBox="0 0 24 24">
+                        <path
+                            d="M16 6a4 4 0 0 1 4 4v10a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V10a4 4 0 0 1 4-4h2V3h4v3h2zm0 2h-4v2h4V8zm-6 2H8v8h8V10h-2v2h-4v-2z" />
+                    </svg>
+                    <span class="text-lg font-semibold">Reports</span>
+                </a>
+            </nav>
+        </aside>
+        <div id="sidebar-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden"></div>
+        <main id="main-content" class="flex-grow p-4 py-12 max-w-7xl mx-auto w-full md:p-8">
+            <div id="dashboard-content">
+                <div
+                    class="bg-white dark:bg-gray-800 p-8 rounded-3xl custom-shadow flex flex-col md:flex-row items-center justify-between transition-all duration-300">
+                    <div class="flex flex-col sm:flex-row items-center gap-6 text-center md:text-left mb-6 md:mb-0">
+                        <img src="assets/images/prottay_logo.png" alt="Partner Logo"
+                            class="w-24 h-24 rounded-full border-4 border-primaryGreen shadow-lg">
+                        <div>
+                            <h1 class="text-3xl font-extrabold text-primaryGreen mb-1">প্রত্যয় শাটলিটি এন্ড কম্পিউটার
+                                ট্রেইনিং সেন্টার</h1>
+                            <p class="text-lg text-gray-600 dark:text-gray-300">প্যাকেজ: <span
+                                    class="font-bold text-primaryOrange">Premium Partner</span></p>
+                        </div>
+                    </div>
+                    <div class="text-center md:text-right space-y-1 text-gray-500 dark:text-gray-400">
+                        <p>এনরোল তারিখ: <span class="font-semibold">2024-01-01</span></p>
+                        <p>মেয়াদ শেষ: <span class="font-semibold text-red-500">2025-01-01</span></p>
+                    </div>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-8">
+                    <div
+                        class="bg-white dark:bg-gray-800 p-8 rounded-3xl custom-shadow text-center transition-all duration-300 hover:scale-105">
+                        <h3 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">সর্বমোট প্রশ্ন</h3>
+                        <p class="text-5xl font-bold text-primaryGreen">1250</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 p-8 rounded-3xl custom-shadow text-center transition-all duration-300 hover:scale-105">
+                        <h3 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">সর্বমোট শিক্ষার্থী</h3>
+                        <p class="text-5xl font-bold text-primaryOrange">5000</p>
+                    </div>
+                    <div
+                        class="bg-white dark:bg-gray-800 p-8 rounded-3xl custom-shadow text-center transition-all duration-300 hover:scale-105">
+                        <h3 class="text-xl font-semibold text-gray-600 dark:text-gray-400 mb-2">সর্বমোট প্রশ্ন সেট</h3>
+                        <p class="text-5xl font-bold text-primaryGreen">120</p>
+                    </div>
+                </div>
+            </div>
+            <div id="student-list-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">শিক্ষার্থীদের তালিকা</h2>
+                   <a href="student-info.html">
+                    <button id="add-student-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Add Student</span>
+                    </button>
+</a>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <label for="student-records-per-page" class="text-sm">Records per page:</label>
+                            <select id="student-records-per-page" class="bg-gray-200 dark:bg-gray-700 rounded p-1 text-sm">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div id="student-pagination-info" class="text-sm text-gray-500 dark:text-gray-400">
+                            Showing 1-10 of 500 records
+                        </div>
+                    </div>
+                    <ul id="student-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-4 flex items-start justify-between">
+                            <span class="text-md font-medium font-bold w-1/6">Picture</span>
+                            <span class="text-md font-medium font-bold w-1/6">Student ID</span>
+                            <span class="text-md font-medium font-bold w-1/6">Student Name</span>
+                            <span class="text-md font-medium font-bold w-1/6">Course</span>
+                            <span class="text-md font-medium font-bold w-1/6">Batch</span>
+                            <span class="text-md font-medium font-bold w-1/6">Status</span>
+                        </li>
+                        </ul>
+                    <div class="flex justify-between items-center mt-4">
+                        <button id="student-prev-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <button id="student-next-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="mcq-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">MCQ Questions</h2>
+                    <button id="add-mcq-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Add New MCQ</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <div class="flex flex-col md:flex-row items-center gap-4 mb-4">
+                        <div class="relative w-full md:w-1/3">
+                            <input type="text" id="mcq-search" placeholder="Search questions..."
+                                class="w-full pl-10 pr-4 py-2 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 focus:outline-none focus:border-primaryGreen transition-colors duration-200">
+                            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 1.99L19.5 14h-4zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 w-full md:w-2/3">
+                            <select id="mcq-course-filter" class="w-full bg-gray-200 dark:bg-gray-700 rounded p-2 text-sm">
+                                <option value="all">All Courses</option>
+                            </select>
+                            <select id="mcq-subject-filter" class="w-full bg-gray-200 dark:bg-gray-700 rounded p-2 text-sm">
+                                <option value="all">All Subjects</option>
+                            </select>
+                            <select id="mcq-topic-filter" class="w-full bg-gray-200 dark:bg-gray-700 rounded p-2 text-sm">
+                                <option value="all">All Topics</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <label for="mcq-records-per-page" class="text-sm">Records per page:</label>
+                            <select id="mcq-records-per-page" class="bg-gray-200 dark:bg-gray-700 rounded p-1 text-sm">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div id="mcq-pagination-info" class="text-sm text-gray-500 dark:text-gray-400">
+                            Showing 1-10 of 100 records
+                        </div>
+                    </div>
+                    <ul id="mcq-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-4 flex items-start justify-between">
+                            <span class="text-md font-medium font-bold w-1/12">Action</span>
+                            <span class="text-md font-medium font-bold w-1/2">Question</span>
+                            <span class="text-md font-medium font-bold w-1/2">Options & Correct Answer</span>
+                        </li>
+                        </ul>
+                    <div class="flex justify-between items-center mt-4">
+                        <button id="mcq-prev-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <button id="mcq-next-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="written-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">Written Questions</h2>
+                    <button id="add-written-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Add New Written Question</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <div class="flex flex-col md:flex-row items-center gap-4 mb-4">
+                        <div class="relative w-full md:w-1/3">
+                            <input type="text" id="written-search" placeholder="Search questions..."
+                                class="w-full pl-10 pr-4 py-2 rounded-lg border-2 border-gray-200 dark:border-gray-700 bg-gray-100 dark:bg-gray-900 focus:outline-none focus:border-primaryGreen transition-colors duration-200">
+                            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 1.99L19.5 14h-4zM9.5 14C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z" />
+                            </svg>
+                        </div>
+                        <div class="flex flex-col sm:flex-row gap-4 w-full md:w-2/3">
+                            <select id="written-course-filter" class="w-full bg-gray-200 dark:bg-gray-700 rounded p-2 text-sm">
+                                <option value="all">All Courses</option>
+                            </select>
+                            <select id="written-subject-filter" class="w-full bg-gray-200 dark:bg-gray-700 rounded p-2 text-sm">
+                                <option value="all">All Subjects</option>
+                            </select>
+                            <select id="written-topic-filter" class="w-full bg-gray-200 dark:bg-gray-700 rounded p-2 text-sm">
+                                <option value="all">All Topics</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <label for="written-records-per-page" class="text-sm">Records per page:</label>
+                            <select id="written-records-per-page" class="bg-gray-200 dark:bg-gray-700 rounded p-1 text-sm">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div id="written-pagination-info" class="text-sm text-gray-500 dark:text-gray-400">
+                            Showing 1-10 of 500 records
+                        </div>
+                    </div>
+                    <ul id="written-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-4 flex items-start justify-between">
+                            <span class="text-md font-medium font-bold w-1/12">Action</span>
+                            <span class="text-md font-medium font-bold w-1/2">Question</span>
+                            <span class="text-md font-medium font-bold w-1/2">Sample Answer</span>
+                        </li>
+                        </ul>
+                    <div class="flex justify-between items-center mt-4">
+                        <button id="written-prev-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <button id="written-next-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="test-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">Tests & Exams</h2>
+                    <button id="add-test-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Create New Test</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <p>This page is for managing tests and exams. You can create new tests by combining MCQ and Written questions here.</p>
+                </div>
+            </div>
+            <div id="course-list-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">Courses</h2>
+                    <button id="add-course-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Add Course</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <label for="course-records-per-page" class="text-sm">Records per page:</label>
+                            <select id="course-records-per-page" class="bg-gray-200 dark:bg-gray-700 rounded p-1 text-sm">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div id="course-pagination-info" class="text-sm text-gray-500 dark:text-gray-400">
+                            Showing 1-7 of 7 records
+                        </div>
+                    </div>
+                    <ul id="course-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-4 flex items-start justify-between">
+                            <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                            <span class="text-md font-medium font-bold w-1/2">Course Name</span>
+                            <span class="text-md font-medium font-bold w-1/2">Status</span>
+                        </li>
+                        </ul>
+                    <div class="flex justify-between items-center mt-4">
+                        <button id="course-prev-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <button id="course-next-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="subject-list-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">Subjects</h2>
+                    <button id="add-subject-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Add Subject</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <label for="subject-records-per-page" class="text-sm">Records per page:</label>
+                            <select id="subject-records-per-page" class="bg-gray-200 dark:bg-gray-700 rounded p-1 text-sm">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div id="subject-pagination-info" class="text-sm text-gray-500 dark:text-gray-400">
+                            Showing 1-10 of 10 records
+                        </div>
+                    </div>
+                    <ul id="subject-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-4 flex items-start justify-between">
+                            <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                            <span class="text-md font-medium font-bold w-1/2">Subject Name</span>
+                            <span class="text-md font-medium font-bold w-1/2">Status</span>
+                        </li>
+                        </ul>
+                    <div class="flex justify-between items-center mt-4">
+                        <button id="subject-prev-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <button id="subject-next-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="topic-list-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">Topics/Chapters</h2>
+                    <button id="add-topic-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Add Topic/Chapter</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <label for="topic-records-per-page" class="text-sm">Records per page:</label>
+                            <select id="topic-records-per-page" class="bg-gray-200 dark:bg-gray-700 rounded p-1 text-sm">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div id="topic-pagination-info" class="text-sm text-gray-500 dark:text-gray-400">
+                            Showing 1-10 of 10 records
+                        </div>
+                    </div>
+                    <ul id="topic-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-4 flex items-start justify-between">
+                            <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                            <span class="text-md font-medium font-bold w-1/2">Topic Name</span>
+                            <span class="text-md font-medium font-bold w-1/2">Status</span>
+                        </li>
+                        </ul>
+                    <div class="flex justify-between items-center mt-4">
+                        <button id="topic-prev-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <button id="topic-next-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="batch-list-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">Batches</h2>
+                    <button id="add-batch-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Add Batch</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <label for="batch-records-per-page" class="text-sm">Records per page:</label>
+                            <select id="batch-records-per-page" class="bg-gray-200 dark:bg-gray-700 rounded p-1 text-sm">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div id="batch-pagination-info" class="text-sm text-gray-500 dark:text-gray-400">
+                            Showing 1-10 of 10 records
+                        </div>
+                    </div>
+                    <ul id="batch-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-4 flex items-start justify-between">
+                            <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                            <span class="text-md font-medium font-bold w-1/2">Batch Name</span>
+                            <span class="text-md font-medium font-bold w-1/2">Status</span>
+                        </li>
+                        </ul>
+                    <div class="flex justify-between items-center mt-4">
+                        <button id="batch-prev-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <button id="batch-next-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="dues-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">Students with Dues</h2>
+                    <button id="receive-payment-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M2.25 8.25h19.5M2.25 12h19.5m-16.5 4.5h16.5m-16.5-16.5v18" />
+                        </svg>
+                        <span>Receive Payment</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <label for="dues-records-per-page" class="text-sm">Records per page:</label>
+                            <select id="dues-records-per-page" class="bg-gray-200 dark:bg-gray-700 rounded p-1 text-sm">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div id="dues-pagination-info" class="text-sm text-gray-500 dark:text-gray-400">
+                            Showing 1-10 of 10 records
+                        </div>
+                    </div>
+                    <ul id="dues-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-4 flex items-start justify-between">
+                            <span class="text-md font-medium font-bold w-1/5">Student ID</span>
+                            <span class="text-md font-medium font-bold w-2/5">Student Name</span>
+                            <span class="text-md font-medium font-bold w-1/5">Due Amount</span>
+                            <span class="text-md font-medium font-bold w-1/5">Actions</span>
+                        </li>
+                        </ul>
+                    <div class="flex justify-between items-center mt-4">
+                        <button id="dues-prev-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <button id="dues-next-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="receive-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">Payment Received</h2>
+                    <button id="new-payment-receive-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>New Payment Receive</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <label for="receive-records-per-page" class="text-sm">Records per page:</label>
+                            <select id="receive-records-per-page" class="bg-gray-200 dark:bg-gray-700 rounded p-1 text-sm">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                                <option value="50">50</option>
+                            </select>
+                        </div>
+                        <div id="receive-pagination-info" class="text-sm text-gray-500 dark:text-gray-400">
+                            Showing 1-10 of 10 records
+                        </div>
+                    </div>
+                    <ul id="receive-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-4 flex items-start justify-between">
+                            <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                            <span class="text-md font-medium font-bold w-2/12">Date</span>
+                            <span class="text-md font-medium font-bold w-2/12">Student ID</span>
+                            <span class="text-md font-medium font-bold w-2/12">Student Name</span>
+                            <span class="text-md font-medium font-bold w-1/12">Category</span>
+                            <span class="text-md font-medium font-bold w-1/12">Amount</span>
+                            <span class="text-md font-medium font-bold w-1/12">Current Dues</span>
+                        </li>
+                        </ul>
+                    <div class="flex justify-between items-center mt-4">
+                        <button id="receive-prev-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <button id="receive-next-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="payment-category-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">Payment Categories</h2>
+                    <button id="add-payment-category-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Add Payment Category</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <div class="flex justify-between items-center mb-4">
+                        <div class="flex items-center space-x-2">
+                            <label for="payment-category-records-per-page" class="text-sm">Records per page:</label>
+                            <select id="payment-category-records-per-page" class="bg-gray-200 dark:bg-gray-700 rounded p-1 text-sm">
+                                <option value="5">5</option>
+                                <option value="10" selected>10</option>
+                                <option value="20">20</option>
+                            </select>
+                        </div>
+                        <div id="payment-category-pagination-info" class="text-sm text-gray-500 dark:text-gray-400">
+                            Showing 1-10 of 10 records
+                        </div>
+                    </div>
+                    <ul id="payment-category-list" class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <li class="py-4 flex items-start justify-between">
+                            <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                            <span class="text-md font-medium font-bold w-4/12">Payment Category Name</span>
+                            <span class="text-md font-medium font-bold w-3/12">Payment Type</span>
+                            <span class="text-md font-medium font-bold w-4/12">Status</span>
+                        </li>
+                        </ul>
+                    <div class="flex justify-between items-center mt-4">
+                        <button id="payment-category-prev-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Previous
+                        </button>
+                        <button id="payment-category-next-btn"
+                            class="bg-primaryGreen text-white px-4 py-2 rounded-lg hover:bg-green-700 transition-colors duration-200 disabled:bg-gray-400 disabled:cursor-not-allowed">
+                            Next
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div id="assign-payment-content" class="hidden">
+                <div class="flex justify-between items-center mb-6">
+                    <h2 class="text-3xl font-bold text-primaryGreen dark:text-white">Assign Payments</h2>
+                    <button id="assign-payment-btn"
+                        class="flex items-center gap-2 bg-primaryGreen text-white px-6 py-2 rounded-xl hover:bg-green-700 transition-colors duration-200">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2"
+                            stroke="currentColor" class="w-6 h-6">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
+                        </svg>
+                        <span>Assign Payment</span>
+                    </button>
+                </div>
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-3xl custom-shadow">
+                    <p>This page is a placeholder for the payment assignment form or table.</p>
+                </div>
+            </div>
+        </main>
+    </div>
+    <footer class="bg-gray-900 text-gray-200 py-8 mt-auto md:ml-64">
+        <div class="max-w-7xl mx-auto px-4 sm:flex sm:justify-between sm:items-center">
+            <div class="flex items-center space-x-4 mb-6 sm:mb-0">
+                <img src="assets/images/logo.png" alt="Bikolpo Computer Logo"
+                    class="w-20 h-20 rounded-full shadow-md" />
+                <div>
+                    <h1 class="text-white text-lg font-bold">Bikolpo Computer</h1>
+                    <p class="text-sm">Your Smart Exam Partner</p>
+                </div>
+            </div>
+            <div class="text-sm space-y-1 mb-6 sm:mb-0">
+                <p>🏠 ঠিকানা: উদ্ভাস কোচিং এর নিচ তলা, কলেজ রোড, আলমনগর, রংপুর।</p>
+                <p>📞 ফোন: <a href="https://wa.me/8801610800060" class="hover:text-white transition-colors">+880
+                        1610800060</a></p>
+                <p>✉️ ইমেইল: <a href="mailto:bikolpo247@gmail.com"
+                        class="hover:text-white transition-colors">bikolpo247@gmail.com</a></p>
+            </div>
+            <div class="flex space-x-5 text-white text-2xl">
+                <a href="https://facebook.com/bikolpocomputer.rangpur" target="_blank" aria-label="Facebook"
+                    class="hover:text-blue-500 transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-7 h-7" viewBox="0 0 24 24">
+                        <path
+                            d="M22.675 0H1.325C.593 0 0 .593 0 1.325v21.351C0 23.407.593 24 1.325 24H12.82v-9.294H9.692v-3.622h3.128V8.413c0-3.1 1.894-4.788 4.659-4.788 1.325 0 2.464.099 2.797.143v3.24l-1.92.001c-1.506 0-1.798.716-1.798 1.767v2.317h3.594l-.468 3.622h-3.126V24h6.127c.73 0 1.323-.593 1.323-1.324V1.325C24 .593 23.407 0 22.675 0z" />
+                    </svg>
+                </a>
+            </div>
+        </div>
+        <div class="mt-8 text-center text-xs text-gray-500">
+            © 2025 Bikolpo Computer. All rights reserved.
+        </div>
+    </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // Dark Mode Toggle
+            const darkToggle = document.getElementById('darkToggle');
+            darkToggle.addEventListener('click', () => {
+                document.documentElement.classList.toggle('dark');
+            });
+            // Sidebar toggle logic for mobile
+            const sidebarToggle = document.getElementById('sidebar-toggle');
+            const sidebar = document.getElementById('sidebar');
+            const hamburgerIcon = document.getElementById('hamburger-icon');
+            const closeIcon = document.getElementById('close-icon');
+            const sidebarOverlay = document.getElementById('sidebar-overlay');
+            const body = document.body;
+            function toggleSidebar() {
+                const isSidebarHidden = sidebar.classList.contains('-translate-x-full');
+                if (isSidebarHidden) {
+                    sidebar.classList.remove('-translate-x-full');
+                    sidebar.classList.add('translate-x-0');
+                    hamburgerIcon.classList.add('hidden');
+                    closeIcon.classList.remove('hidden');
+                    sidebarOverlay.classList.remove('hidden');
+                    body.classList.add('body-no-scroll');
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    sidebar.classList.remove('translate-x-0');
+                    hamburgerIcon.classList.remove('hidden');
+                    closeIcon.classList.add('hidden');
+                    sidebarOverlay.classList.add('hidden');
+                    body.classList.remove('body-no-scroll');
+                }
+            }
+            sidebarToggle.addEventListener('click', toggleSidebar);
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+            // Handle resize to ensure correct state on desktop
+            window.addEventListener('resize', () => {
+                if (window.innerWidth >= 768) {
+                    sidebar.classList.remove('-translate-x-full');
+                    sidebar.classList.remove('translate-x-0');
+                    sidebarOverlay.classList.add('hidden');
+                    body.classList.remove('body-no-scroll');
+                } else {
+                    sidebar.classList.add('-translate-x-full');
+                    sidebar.classList.remove('translate-x-0');
+                    sidebarOverlay.classList.add('hidden');
+                }
+            });
+
+            // --- Common Data ---
+            const allCourses = [
+                { id: 1, name: 'BCS', status: 'Active' },
+                { id: 2, name: 'University Admission', status: 'Active' },
+                { id: 3, name: 'SSC', status: 'Active' },
+                { id: 4, name: 'HSC', status: 'Active' },
+                { id: 5, name: 'Medical Admission', status: 'Inactive' },
+                { id: 6, name: 'Nursing Admission', status: 'Active' },
+                { id: 7, name: 'Primary Teacher', status: 'Active' },
+            ];
+            const allSubjects = [
+                { id: 1, name: 'Bangla', status: 'Active' },
+                { id: 2, name: 'English', status: 'Active' },
+                { id: 3, name: 'Physics', status: 'Active' },
+                { id: 4, name: 'Chemistry', status: 'Active' },
+                { id: 5, name: 'Mathematics', status: 'Inactive' },
+            ];
+            const allTopics = [];
+            for (let i = 1; i <= 25; i++) {
+                allTopics.push({
+                    id: i,
+                    name: `Topic/Chapter ${i}`,
+                    status: Math.random() > 0.5 ? 'Active' : 'Inactive'
+                });
+            }
+
+            // --- Utility function to populate filter dropdowns ---
+            function populateFilterDropdowns(courseSelectId, subjectSelectId, topicSelectId) {
+                const courseSelect = document.getElementById(courseSelectId);
+                const subjectSelect = document.getElementById(subjectSelectId);
+                const topicSelect = document.getElementById(topicSelectId);
+
+                allCourses.forEach(course => {
+                    const option = document.createElement('option');
+                    option.value = course.id;
+                    option.textContent = course.name;
+                    courseSelect.appendChild(option);
+                });
+
+                allSubjects.forEach(subject => {
+                    const option = document.createElement('option');
+                    option.value = subject.id;
+                    option.textContent = subject.name;
+                    subjectSelect.appendChild(option);
+                });
+                
+                allTopics.forEach(topic => {
+                    const option = document.createElement('option');
+                    option.value = topic.id;
+                    option.textContent = topic.name;
+                    topicSelect.appendChild(option);
+                });
+            }
+
+            // --- Student List Data and Pagination Logic ---
+            const allStudents = [];
+            for (let i = 1; i <= 500; i++) {
+                allStudents.push({
+                    id: `${100 + i}`,
+                    name: `Student Name ${i}`,
+                    course: `Course ${Math.floor(Math.random() * 5) + 1}`,
+                    batch: `Batch ${Math.floor(Math.random() * 10) + 1}`,
+                    photo: 'assets/images/orjon.jpg',
+                    status: Math.random() > 0.5 ? 'Active' : 'Inactive'
+                });
+            }
+
+            let studentCurrentPage = 1;
+            let studentRecordsPerPage = 10;
+            const studentListContainer = document.getElementById('student-list');
+            const studentRecordsPerPageSelect = document.getElementById('student-records-per-page');
+            const studentPrevBtn = document.getElementById('student-prev-btn');
+            const studentNextBtn = document.getElementById('student-next-btn');
+            const studentPaginationInfo = document.getElementById('student-pagination-info');
+
+            function displayStudents(page, records) {
+                const startIndex = (page - 1) * records;
+                const endIndex = startIndex + records;
+                const paginatedStudents = allStudents.slice(startIndex, endIndex);
+
+                studentListContainer.innerHTML = `
+                    <li class="py-4 flex items-start justify-between">
+                        <span class="text-md font-medium font-bold w-1/6">Picture</span>
+                        <span class="text-md font-medium font-bold w-1/6">Student ID</span>
+                        <span class="text-md font-medium font-bold w-1/6">Student Name</span>
+                        <span class="text-md font-medium font-bold w-1/6">Course</span>
+                        <span class="text-md font-medium font-bold w-1/6">Batch</span>
+                        <span class="text-md font-medium font-bold w-1/6">Status</span>
+                    </li>
+                `;
+
+                paginatedStudents.forEach(student => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'py-2 flex items-center justify-between text-sm';
+                    const statusColor = student.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+                    listItem.innerHTML = `
+                        <span class="w-1/6"><img src="${student.photo}" alt="Photo" class="w-10 h-10 rounded-full object-cover"></span>
+                        <span class="w-1/6 font-semibold">${student.id}</span>
+                        <span class="w-1/6">${student.name}</span>
+                        <span class="w-1/6">${student.course}</span>
+                        <span class="w-1/6">${student.batch}</span>
+                        <span class="w-1/6">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}">
+                                ${student.status}
+                            </span>
+                        </span>
+                    `;
+                    studentListContainer.appendChild(listItem);
+                });
+
+                updateStudentPaginationControls();
+            }
+
+            function updateStudentPaginationControls() {
+                const totalPages = Math.ceil(allStudents.length / studentRecordsPerPage);
+                studentPrevBtn.disabled = studentCurrentPage === 1;
+                studentNextBtn.disabled = studentCurrentPage === totalPages;
+
+                const startRecord = (studentCurrentPage - 1) * studentRecordsPerPage + 1;
+                const endRecord = Math.min(studentCurrentPage * studentRecordsPerPage, allStudents.length);
+                studentPaginationInfo.textContent = `Showing ${startRecord}-${endRecord} of ${allStudents.length} records`;
+            }
+
+            studentRecordsPerPageSelect.addEventListener('change', (e) => {
+                studentRecordsPerPage = parseInt(e.target.value);
+                studentCurrentPage = 1;
+                displayStudents(studentCurrentPage, studentRecordsPerPage);
+            });
+
+            studentPrevBtn.addEventListener('click', () => {
+                if (studentCurrentPage > 1) {
+                    studentCurrentPage--;
+                    displayStudents(studentCurrentPage, studentRecordsPerPage);
+                }
+            });
+
+            studentNextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(allStudents.length / studentRecordsPerPage);
+                if (studentCurrentPage < totalPages) {
+                    studentCurrentPage++;
+                    displayStudents(studentCurrentPage, studentRecordsPerPage);
+                }
+            });
+
+            // --- Course List Data and Pagination Logic ---
+            let courseCurrentPage = 1;
+            let courseRecordsPerPage = 10;
+            const courseListContainer = document.getElementById('course-list');
+            const courseRecordsPerPageSelect = document.getElementById('course-records-per-page');
+            const coursePrevBtn = document.getElementById('course-prev-btn');
+            const courseNextBtn = document.getElementById('course-next-btn');
+            const coursePaginationInfo = document.getElementById('course-pagination-info');
+
+            function displayCourses(page, records) {
+                const startIndex = (page - 1) * records;
+                const endIndex = startIndex + records;
+                const paginatedCourses = allCourses.slice(startIndex, endIndex);
+
+                courseListContainer.innerHTML = `
+                    <li class="py-4 flex items-start justify-between">
+                        <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                        <span class="text-md font-medium font-bold w-1/2">Course Name</span>
+                        <span class="text-md font-medium font-bold w-1/2">Status</span>
+                    </li>
+                `;
+
+                paginatedCourses.forEach(course => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'py-2 flex items-center justify-between text-sm';
+                    const statusColor = course.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+                    listItem.innerHTML = `
+                        <a href="#" class="w-1/12 text-primaryOrange hover:text-primaryGreen transition-colors duration-200" title="Edit Course">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                            </svg>
+                        </a>
+                        <span class="w-1/2">${course.name}</span>
+                        <span class="w-1/2">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}">
+                                ${course.status}
+                            </span>
+                        </span>
+                    `;
+                    courseListContainer.appendChild(listItem);
+                });
+
+                updateCoursePaginationControls();
+            }
+
+            function updateCoursePaginationControls() {
+                const totalPages = Math.ceil(allCourses.length / courseRecordsPerPage);
+                coursePrevBtn.disabled = courseCurrentPage === 1;
+                courseNextBtn.disabled = courseCurrentPage === totalPages;
+
+                const startRecord = (courseCurrentPage - 1) * courseRecordsPerPage + 1;
+                const endRecord = Math.min(courseCurrentPage * courseRecordsPerPage, allCourses.length);
+                coursePaginationInfo.textContent = `Showing ${startRecord}-${endRecord} of ${allCourses.length} records`;
+            }
+
+            courseRecordsPerPageSelect.addEventListener('change', (e) => {
+                courseRecordsPerPage = parseInt(e.target.value);
+                courseCurrentPage = 1;
+                displayCourses(courseCurrentPage, courseRecordsPerPage);
+            });
+
+            coursePrevBtn.addEventListener('click', () => {
+                if (courseCurrentPage > 1) {
+                    courseCurrentPage--;
+                    displayCourses(courseCurrentPage, courseRecordsPerPage);
+                }
+            });
+
+            courseNextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(allCourses.length / courseRecordsPerPage);
+                if (courseCurrentPage < totalPages) {
+                    courseCurrentPage++;
+                    displayCourses(courseCurrentPage, courseRecordsPerPage);
+                }
+            });
+
+            // --- Subject List Data and Pagination Logic ---
+            let subjectCurrentPage = 1;
+            let subjectRecordsPerPage = 10;
+            const subjectListContainer = document.getElementById('subject-list');
+            const subjectRecordsPerPageSelect = document.getElementById('subject-records-per-page');
+            const subjectPrevBtn = document.getElementById('subject-prev-btn');
+            const subjectNextBtn = document.getElementById('subject-next-btn');
+            const subjectPaginationInfo = document.getElementById('subject-pagination-info');
+
+            function displaySubjects(page, records) {
+                const startIndex = (page - 1) * records;
+                const endIndex = startIndex + records;
+                const paginatedSubjects = allSubjects.slice(startIndex, endIndex);
+
+                subjectListContainer.innerHTML = `
+                    <li class="py-4 flex items-start justify-between">
+                        <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                        <span class="text-md font-medium font-bold w-1/2">Subject Name</span>
+                        <span class="text-md font-medium font-bold w-1/2">Status</span>
+                    </li>
+                `;
+
+                paginatedSubjects.forEach(subject => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'py-2 flex items-center justify-between text-sm';
+                    const statusColor = subject.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+                    listItem.innerHTML = `
+                        <a href="#" class="w-1/12 text-primaryOrange hover:text-primaryGreen transition-colors duration-200" title="Edit Subject">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                            </svg>
+                        </a>
+                        <span class="w-1/2">${subject.name}</span>
+                        <span class="w-1/2">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}">
+                                ${subject.status}
+                            </span>
+                        </span>
+                    `;
+                    subjectListContainer.appendChild(listItem);
+                });
+
+                updateSubjectPaginationControls();
+            }
+
+            function updateSubjectPaginationControls() {
+                const totalPages = Math.ceil(allSubjects.length / subjectRecordsPerPage);
+                subjectPrevBtn.disabled = subjectCurrentPage === 1;
+                subjectNextBtn.disabled = subjectCurrentPage === totalPages;
+
+                const startRecord = (subjectCurrentPage - 1) * subjectRecordsPerPage + 1;
+                const endRecord = Math.min(subjectCurrentPage * subjectRecordsPerPage, allSubjects.length);
+                subjectPaginationInfo.textContent = `Showing ${startRecord}-${endRecord} of ${allSubjects.length} records`;
+            }
+
+            subjectRecordsPerPageSelect.addEventListener('change', (e) => {
+                subjectRecordsPerPage = parseInt(e.target.value);
+                subjectCurrentPage = 1;
+                displaySubjects(subjectCurrentPage, subjectRecordsPerPage);
+            });
+
+            subjectPrevBtn.addEventListener('click', () => {
+                if (subjectCurrentPage > 1) {
+                    subjectCurrentPage--;
+                    displaySubjects(subjectCurrentPage, subjectRecordsPerPage);
+                }
+            });
+
+            subjectNextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(allSubjects.length / subjectRecordsPerPage);
+                if (subjectCurrentPage < totalPages) {
+                    subjectCurrentPage++;
+                    displaySubjects(subjectCurrentPage, subjectRecordsPerPage);
+                }
+            });
+            
+            // --- Topic/Chapter List Data and Pagination Logic ---
+            let topicCurrentPage = 1;
+            let topicRecordsPerPage = 10;
+            const topicListContainer = document.getElementById('topic-list');
+            const topicRecordsPerPageSelect = document.getElementById('topic-records-per-page');
+            const topicPrevBtn = document.getElementById('topic-prev-btn');
+            const topicNextBtn = document.getElementById('topic-next-btn');
+            const topicPaginationInfo = document.getElementById('topic-pagination-info');
+
+            function displayTopics(page, records) {
+                const startIndex = (page - 1) * records;
+                const endIndex = startIndex + records;
+                const paginatedTopics = allTopics.slice(startIndex, endIndex);
+
+                topicListContainer.innerHTML = `
+                    <li class="py-4 flex items-start justify-between">
+                        <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                        <span class="text-md font-medium font-bold w-1/2">Topic Name</span>
+                        <span class="text-md font-medium font-bold w-1/2">Status</span>
+                    </li>
+                `;
+
+                paginatedTopics.forEach(topic => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'py-2 flex items-center justify-between text-sm';
+                    const statusColor = topic.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+                    listItem.innerHTML = `
+                        <a href="#" class="w-1/12 text-primaryOrange hover:text-primaryGreen transition-colors duration-200" title="Edit Topic">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                            </svg>
+                        </a>
+                        <span class="w-1/2">${topic.name}</span>
+                        <span class="w-1/2">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}">
+                                ${topic.status}
+                            </span>
+                        </span>
+                    `;
+                    topicListContainer.appendChild(listItem);
+                });
+
+                updateTopicPaginationControls();
+            }
+
+            function updateTopicPaginationControls() {
+                const totalPages = Math.ceil(allTopics.length / topicRecordsPerPage);
+                topicPrevBtn.disabled = topicCurrentPage === 1;
+                topicNextBtn.disabled = topicCurrentPage === totalPages;
+
+                const startRecord = (topicCurrentPage - 1) * topicRecordsPerPage + 1;
+                const endRecord = Math.min(topicCurrentPage * topicRecordsPerPage, allTopics.length);
+                topicPaginationInfo.textContent = `Showing ${startRecord}-${endRecord} of ${allTopics.length} records`;
+            }
+
+            topicRecordsPerPageSelect.addEventListener('change', (e) => {
+                topicRecordsPerPage = parseInt(e.target.value);
+                topicCurrentPage = 1;
+                displayTopics(topicCurrentPage, topicRecordsPerPage);
+            });
+
+            topicPrevBtn.addEventListener('click', () => {
+                if (topicCurrentPage > 1) {
+                    topicCurrentPage--;
+                    displayTopics(topicCurrentPage, topicRecordsPerPage);
+                }
+            });
+
+            topicNextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(allTopics.length / topicRecordsPerPage);
+                if (topicCurrentPage < totalPages) {
+                    topicCurrentPage++;
+                    displayTopics(topicCurrentPage, topicRecordsPerPage);
+                }
+            });
+
+            // --- Batch List Data and Pagination Logic ---
+            const allBatches = [];
+            for (let i = 1; i <= 25; i++) {
+                allBatches.push({
+                    id: i,
+                    name: `Batch ${i}`,
+                    status: Math.random() > 0.5 ? 'Active' : 'Inactive'
+                });
+            }
+
+            let batchCurrentPage = 1;
+            let batchRecordsPerPage = 10;
+            const batchListContainer = document.getElementById('batch-list');
+            const batchRecordsPerPageSelect = document.getElementById('batch-records-per-page');
+            const batchPrevBtn = document.getElementById('batch-prev-btn');
+            const batchNextBtn = document.getElementById('batch-next-btn');
+            const batchPaginationInfo = document.getElementById('batch-pagination-info');
+
+            function displayBatches(page, records) {
+                const startIndex = (page - 1) * records;
+                const endIndex = startIndex + records;
+                const paginatedBatches = allBatches.slice(startIndex, endIndex);
+
+                batchListContainer.innerHTML = `
+                    <li class="py-4 flex items-start justify-between">
+                        <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                        <span class="text-md font-medium font-bold w-1/2">Batch Name</span>
+                        <span class="text-md font-medium font-bold w-1/2">Status</span>
+                    </li>
+                `;
+
+                paginatedBatches.forEach(batch => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'py-2 flex items-center justify-between text-sm';
+                    const statusColor = batch.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+                    listItem.innerHTML = `
+                        <a href="#" class="w-1/12 text-primaryOrange hover:text-primaryGreen transition-colors duration-200" title="Edit Batch">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                            </svg>
+                        </a>
+                        <span class="w-1/2">${batch.name}</span>
+                        <span class="w-1/2">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}">
+                                ${batch.status}
+                            </span>
+                        </span>
+                    `;
+                    batchListContainer.appendChild(listItem);
+                });
+
+                updateBatchPaginationControls();
+            }
+
+            function updateBatchPaginationControls() {
+                const totalPages = Math.ceil(allBatches.length / batchRecordsPerPage);
+                batchPrevBtn.disabled = batchCurrentPage === 1;
+                batchNextBtn.disabled = batchCurrentPage === totalPages;
+
+                const startRecord = (batchCurrentPage - 1) * batchRecordsPerPage + 1;
+                const endRecord = Math.min(batchCurrentPage * batchRecordsPerPage, allBatches.length);
+                batchPaginationInfo.textContent = `Showing ${startRecord}-${endRecord} of ${allBatches.length} records`;
+            }
+
+            batchRecordsPerPageSelect.addEventListener('change', (e) => {
+                batchRecordsPerPage = parseInt(e.target.value);
+                batchCurrentPage = 1;
+                displayBatches(batchCurrentPage, batchRecordsPerPage);
+            });
+
+            batchPrevBtn.addEventListener('click', () => {
+                if (batchCurrentPage > 1) {
+                    batchCurrentPage--;
+                    displayBatches(batchCurrentPage, batchRecordsPerPage);
+                }
+            });
+
+            batchNextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(allBatches.length / batchRecordsPerPage);
+                if (batchCurrentPage < totalPages) {
+                    batchCurrentPage++;
+                    displayBatches(batchCurrentPage, batchRecordsPerPage);
+                }
+            });
+
+            // --- Payment Category Data and Pagination Logic ---
+            const allPaymentCategories = [
+                { id: 1, name: 'Monthly Fees', paymentType: 'Recurring', status: 'Active' },
+                { id: 2, name: 'Admission Fees', paymentType: 'One time', status: 'Active' },
+                { id: 3, name: 'Semester Fees', paymentType: 'Recurring', status: 'Active' },
+                { id: 4, name: 'Form Fillup', paymentType: 'One time', status: 'Inactive' },
+            ];
+
+            let paymentCategoryCurrentPage = 1;
+            let paymentCategoryRecordsPerPage = 10;
+            const paymentCategoryListContainer = document.getElementById('payment-category-list');
+            const paymentCategoryRecordsPerPageSelect = document.getElementById('payment-category-records-per-page');
+            const paymentCategoryPrevBtn = document.getElementById('payment-category-prev-btn');
+            const paymentCategoryNextBtn = document.getElementById('payment-category-next-btn');
+            const paymentCategoryPaginationInfo = document.getElementById('payment-category-pagination-info');
+
+            function displayPaymentCategories(page, records) {
+                const startIndex = (page - 1) * records;
+                const endIndex = startIndex + records;
+                const paginatedPaymentCategories = allPaymentCategories.slice(startIndex, endIndex);
+
+                paymentCategoryListContainer.innerHTML = `
+                    <li class="py-4 flex items-start justify-between">
+                        <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                        <span class="text-md font-medium font-bold w-4/12">Payment Category Name</span>
+                        <span class="text-md font-medium font-bold w-3/12">Payment Type</span>
+                        <span class="text-md font-medium font-bold w-4/12">Status</span>
+                    </li>
+                `;
+
+                paginatedPaymentCategories.forEach(category => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'py-2 flex items-center justify-between text-sm';
+                    const statusColor = category.status === 'Active' ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800';
+                    listItem.innerHTML = `
+                        <a href="#" class="w-1/12 text-primaryOrange hover:text-primaryGreen transition-colors duration-200" title="Edit Category">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                            </svg>
+                        </a>
+                        <span class="w-4/12">${category.name}</span>
+                        <span class="w-3/12">${category.paymentType}</span>
+                        <span class="w-4/12">
+                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full ${statusColor}">
+                                ${category.status}
+                            </span>
+                        </span>
+                    `;
+                    paymentCategoryListContainer.appendChild(listItem);
+                });
+
+                updatePaymentCategoryPaginationControls();
+            }
+
+            function updatePaymentCategoryPaginationControls() {
+                const totalPages = Math.ceil(allPaymentCategories.length / paymentCategoryRecordsPerPage);
+                paymentCategoryPrevBtn.disabled = paymentCategoryCurrentPage === 1;
+                paymentCategoryNextBtn.disabled = paymentCategoryCurrentPage === totalPages;
+
+                const startRecord = (paymentCategoryCurrentPage - 1) * paymentCategoryRecordsPerPage + 1;
+                const endRecord = Math.min(paymentCategoryCurrentPage * paymentCategoryRecordsPerPage, allPaymentCategories.length);
+                paymentCategoryPaginationInfo.textContent = `Showing ${startRecord}-${endRecord} of ${allPaymentCategories.length} records`;
+            }
+
+            paymentCategoryRecordsPerPageSelect.addEventListener('change', (e) => {
+                paymentCategoryRecordsPerPage = parseInt(e.target.value);
+                paymentCategoryCurrentPage = 1;
+                displayPaymentCategories(paymentCategoryCurrentPage, paymentCategoryRecordsPerPage);
+            });
+
+            paymentCategoryPrevBtn.addEventListener('click', () => {
+                if (paymentCategoryCurrentPage > 1) {
+                    paymentCategoryCurrentPage--;
+                    displayPaymentCategories(paymentCategoryCurrentPage, paymentCategoryRecordsPerPage);
+                }
+            });
+
+            paymentCategoryNextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(allPaymentCategories.length / paymentCategoryRecordsPerPage);
+                if (paymentCategoryCurrentPage < totalPages) {
+                    paymentCategoryCurrentPage++;
+                    displayPaymentCategories(paymentCategoryCurrentPage, paymentCategoryRecordsPerPage);
+                }
+            });
+
+            // --- Dues Data and Pagination Logic ---
+            const allDues = [];
+            for (let i = 1; i <= 25; i++) {
+                allDues.push({
+                    id: `${100 + i}`,
+                    name: `Student Name ${i}`,
+                    course: `Course ${Math.floor(Math.random() * 5) + 1}`,
+                    batch: `Batch ${Math.floor(Math.random() * 10) + 1}`,
+                    due: Math.floor(Math.random() * 5000) + 500
+                });
+            }
+
+            let duesCurrentPage = 1;
+            let duesRecordsPerPage = 10;
+            const duesListContainer = document.getElementById('dues-list');
+            const duesRecordsPerPageSelect = document.getElementById('dues-records-per-page');
+            const duesPrevBtn = document.getElementById('dues-prev-btn');
+            const duesNextBtn = document.getElementById('dues-next-btn');
+            const duesPaginationInfo = document.getElementById('dues-pagination-info');
+
+            function displayDues(page, records) {
+                const startIndex = (page - 1) * records;
+                const endIndex = startIndex + records;
+                const paginatedDues = allDues.slice(startIndex, endIndex);
+
+                duesListContainer.innerHTML = `
+                    <li class="py-4 flex items-start justify-between">
+                        <span class="text-md font-medium font-bold w-1/5">Student ID</span>
+                        <span class="text-md font-medium font-bold w-2/5">Student Name</span>
+                        <span class="text-md font-medium font-bold w-1/5">Due Amount</span>
+                        <span class="text-md font-medium font-bold w-1/5">Actions</span>
+                    </li>
+                `;
+
+                paginatedDues.forEach(due => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'py-2 flex items-center justify-between text-sm';
+                    listItem.innerHTML = `
+                        <span class="w-1/5 font-semibold">${due.id}</span>
+                        <span class="w-2/5">${due.name}</span>
+                        <span class="w-1/5 text-primaryOrange font-bold">${due.due} BDT</span>
+                        <span class="w-1/5">
+                            <button class="bg-primaryOrange text-white px-3 py-1 text-xs rounded-lg hover:bg-orange-600 transition-colors duration-200">
+                                Receive Now
+                            </button>
+                        </span>
+                    `;
+                    duesListContainer.appendChild(listItem);
+                });
+
+                updateDuesPaginationControls();
+            }
+
+            function updateDuesPaginationControls() {
+                const totalPages = Math.ceil(allDues.length / duesRecordsPerPage);
+                duesPrevBtn.disabled = duesCurrentPage === 1;
+                duesNextBtn.disabled = duesCurrentPage === totalPages;
+
+                const startRecord = (duesCurrentPage - 1) * duesRecordsPerPage + 1;
+                const endRecord = Math.min(duesCurrentPage * duesRecordsPerPage, allDues.length);
+                duesPaginationInfo.textContent = `Showing ${startRecord}-${endRecord} of ${allDues.length} records`;
+            }
+
+            duesRecordsPerPageSelect.addEventListener('change', (e) => {
+                duesRecordsPerPage = parseInt(e.target.value);
+                duesCurrentPage = 1;
+                displayDues(duesCurrentPage, duesRecordsPerPage);
+            });
+
+            duesPrevBtn.addEventListener('click', () => {
+                if (duesCurrentPage > 1) {
+                    duesCurrentPage--;
+                    displayDues(duesCurrentPage, duesRecordsPerPage);
+                }
+            });
+
+            duesNextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(allDues.length / duesRecordsPerPage);
+                if (duesCurrentPage < totalPages) {
+                    duesCurrentPage++;
+                    displayDues(duesCurrentPage, duesRecordsPerPage);
+                }
+            });
+
+            // --- Received Payments Data and Pagination Logic ---
+            const allReceivedPayments = [];
+            for (let i = 1; i <= 30; i++) {
+                allReceivedPayments.push({
+                    id: i,
+                    date: `2025-07-${i < 10 ? '0' + i : i}`,
+                    studentId: `100${Math.floor(Math.random() * 25) + 1}`,
+                    studentName: `Student Name ${Math.floor(Math.random() * 25) + 1}`,
+                    category: ['Monthly Fees', 'Admission Fees'][Math.floor(Math.random() * 2)],
+                    amount: Math.floor(Math.random() * 2000) + 1000,
+                    currentDues: Math.floor(Math.random() * 500) + 100
+                });
+            }
+
+            let receiveCurrentPage = 1;
+            let receiveRecordsPerPage = 10;
+            const receiveListContainer = document.getElementById('receive-list');
+            const receiveRecordsPerPageSelect = document.getElementById('receive-records-per-page');
+            const receivePrevBtn = document.getElementById('receive-prev-btn');
+            const receiveNextBtn = document.getElementById('receive-next-btn');
+            const receivePaginationInfo = document.getElementById('receive-pagination-info');
+
+            function displayReceivedPayments(page, records) {
+                const startIndex = (page - 1) * records;
+                const endIndex = startIndex + records;
+                const paginatedReceivedPayments = allReceivedPayments.slice(startIndex, endIndex);
+
+                receiveListContainer.innerHTML = `
+                    <li class="py-4 flex items-start justify-between">
+                        <span class="text-md font-medium font-bold w-1/12">Edit</span>
+                        <span class="text-md font-medium font-bold w-2/12">Date</span>
+                        <span class="text-md font-medium font-bold w-2/12">Student ID</span>
+                        <span class="text-md font-medium font-bold w-2/12">Student Name</span>
+                        <span class="text-md font-medium font-bold w-1/12">Category</span>
+                        <span class="text-md font-medium font-bold w-1/12">Amount</span>
+                        <span class="text-md font-medium font-bold w-1/12">Current Dues</span>
+                    </li>
+                `;
+
+                paginatedReceivedPayments.forEach(payment => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'py-2 flex items-center justify-between text-sm';
+                    listItem.innerHTML = `
+                        <a href="#" class="w-1/12 text-primaryOrange hover:text-primaryGreen transition-colors duration-200" title="Edit Payment">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                            </svg>
+                        </a>
+                        <span class="w-2/12">${payment.date}</span>
+                        <span class="w-2/12 font-semibold">${payment.studentId}</span>
+                        <span class="w-2/12">${payment.studentName}</span>
+                        <span class="w-1/12">${payment.category}</span>
+                        <span class="w-1/12 text-primaryGreen font-bold">${payment.amount} BDT</span>
+                        <span class="w-1/12 text-primaryOrange font-bold">${payment.currentDues} BDT</span>
+                    `;
+                    receiveListContainer.appendChild(listItem);
+                });
+
+                updateReceivedPaymentsPaginationControls();
+            }
+
+            function updateReceivedPaymentsPaginationControls() {
+                const totalPages = Math.ceil(allReceivedPayments.length / receiveRecordsPerPage);
+                receivePrevBtn.disabled = receiveCurrentPage === 1;
+                receiveNextBtn.disabled = receiveCurrentPage === totalPages;
+
+                const startRecord = (receiveCurrentPage - 1) * receiveRecordsPerPage + 1;
+                const endRecord = Math.min(receiveCurrentPage * receiveRecordsPerPage, allReceivedPayments.length);
+                receivePaginationInfo.textContent = `Showing ${startRecord}-${endRecord} of ${allReceivedPayments.length} records`;
+            }
+
+            receiveRecordsPerPageSelect.addEventListener('change', (e) => {
+                receiveRecordsPerPage = parseInt(e.target.value);
+                receiveCurrentPage = 1;
+                displayReceivedPayments(receiveCurrentPage, receiveRecordsPerPage);
+            });
+
+            receivePrevBtn.addEventListener('click', () => {
+                if (receiveCurrentPage > 1) {
+                    receiveCurrentPage--;
+                    displayReceivedPayments(receiveCurrentPage, receiveRecordsPerPage);
+                }
+            });
+
+            receiveNextBtn.addEventListener('click', () => {
+                const totalPages = Math.ceil(allReceivedPayments.length / receiveRecordsPerPage);
+                if (receiveCurrentPage < totalPages) {
+                    receiveCurrentPage++;
+                    displayReceivedPayments(receiveCurrentPage, receiveRecordsPerPage);
+                }
+            });
+            
+            // --- MCQ Data with proper Course/Subject/Topic mapping ---
+            const allMCQs = [
+                { id: 1, question: 'What is the capital of Bangladesh?', options: ['Dhaka', 'Chittagong', 'Rajshahi', 'Sylhet'], correct: 'A', courseId: 1, subjectId: 1, topicId: 1 },
+                { id: 2, question: 'The term "Renaissance" literally means what?', options: ['Rebirth', 'Discovery', 'New Era', 'Innovation'], correct: 'A', courseId: 2, subjectId: 2, topicId: 2 },
+                { id: 3, question: 'What is the SI unit of force?', options: ['Joule', 'Watt', 'Newton', 'Pascal'], correct: 'C', courseId: 4, subjectId: 3, topicId: 3 },
+                { id: 4, question: 'Which element has the symbol O?', options: ['Gold', 'Oxygen', 'Osmium', 'Iron'], correct: 'B', courseId: 4, subjectId: 4, topicId: 4 },
+                { id: 5, question: 'Who wrote "A Tale of Two Cities"?', options: ['Charles Dickens', 'William Shakespeare', 'Jane Austen', 'Mark Twain'], correct: 'A', courseId: 3, subjectId: 2, topicId: 5 },
+                { id: 6, question: 'What is the national fish of Bangladesh?', options: ['Hilsa', 'Rui', 'Katla', 'Pangas'], correct: 'A', courseId: 1, subjectId: 1, topicId: 6 },
+                { id: 7, question: 'What is the boiling point of water in Celsius?', options: ['90°C', '100°C', '110°C', '120°C'], correct: 'B', courseId: 2, subjectId: 3, topicId: 7 },
+                { id: 8, question: 'What is the chemical formula for water?', options: ['H2O', 'CO2', 'O2', 'NaCl'], correct: 'A', courseId: 4, subjectId: 4, topicId: 8 },
+                { id: 9, question: 'Which planet is known as the "Red Planet"?', options: ['Venus', 'Jupiter', 'Mars', 'Saturn'], correct: 'C', courseId: 1, subjectId: 3, topicId: 9 },
+                { id: 10, question: 'Who is the father of the nation of Bangladesh?', options: ['Sheikh Mujibur Rahman', 'Ziaur Rahman', 'Tajuddin Ahmad', 'A. K. Fazlul Huq'], correct: 'A', courseId: 3, subjectId: 1, topicId: 10 },
+                { id: 11, question: 'What is the full form of CSS?', options: ['Cascading Style Sheets', 'Creative Style System', 'Computer Style Sheets', 'Colorful Style Sheets'], correct: 'A', courseId: 4, subjectId: 5, topicId: 11 },
+                { id: 12, question: 'What is the capital city of France?', options: ['Rome', 'Madrid', 'Berlin', 'Paris'], correct: 'D', courseId: 1, subjectId: 2, topicId: 12 },
+                { id: 13, question: 'What is the largest organ of the human body?', options: ['Heart', 'Liver', 'Skin', 'Lungs'], correct: 'C', courseId: 5, subjectId: 4, topicId: 13 },
+                { id: 14, question: 'What is the primary language of Bangladesh?', options: ['Hindi', 'Bengali', 'Urdu', 'English'], correct: 'B', courseId: 1, subjectId: 1, topicId: 14 },
+                { id: 15, question: 'What is the currency of Japan?', options: ['Dollar', 'Euro', 'Yen', 'Pound'], correct: 'C', courseId: 2, subjectId: 2, topicId: 15 },
+                { id: 16, question: 'What is the speed of light?', options: ['300,000 km/s', '150,000 km/s', '450,000 km/s', '1,000,000 km/s'], correct: 'A', courseId: 4, subjectId: 3, topicId: 16 },
+                { id: 17, question: 'Which acid is found in a lemon?', options: ['Sulfuric acid', 'Citric acid', 'Hydrochloric acid', 'Acetic acid'], correct: 'B', courseId: 5, subjectId: 4, topicId: 17 },
+                { id: 18, question: 'Who painted the Mona Lisa?', options: ['Vincent van Gogh', 'Pablo Picasso', 'Leonardo da Vinci', 'Claude Monet'], correct: 'C', courseId: 2, subjectId: 2, topicId: 18 },
+                { id: 19, question: 'What is the longest river in the world?', options: ['Amazon', 'Nile', 'Yangtze', 'Mississippi'], correct: 'B', courseId: 1, subjectId: 1, topicId: 19 },
+                { id: 20, question: 'What is the square root of 64?', options: ['6', '7', '8', '9'], correct: 'C', courseId: 3, subjectId: 5, topicId: 20 },
+            ];
+
+            // Add more questions to the list to reach a significant count
+            for (let i = 21; i <= 100; i++) {
+                allMCQs.push({
+                    id: i,
+                    question: `This is a generic MCQ question number ${i}. What's the best option?`,
+                    options: ['Option A', 'Option B', 'Option C', 'Option D'],
+                    correct: ['A', 'B', 'C', 'D'][Math.floor(Math.random() * 4)],
+                    courseId: Math.floor(Math.random() * allCourses.length) + 1,
+                    subjectId: Math.floor(Math.random() * allSubjects.length) + 1,
+                    topicId: Math.floor(Math.random() * allTopics.length) + 1,
+                });
+            }
+
+            let mcqCurrentPage = 1;
+            let mcqRecordsPerPage = 10;
+            const mcqListContainer = document.getElementById('mcq-list');
+            const mcqRecordsPerPageSelect = document.getElementById('mcq-records-per-page');
+            const mcqPrevBtn = document.getElementById('mcq-prev-btn');
+            const mcqNextBtn = document.getElementById('mcq-next-btn');
+            const mcqPaginationInfo = document.getElementById('mcq-pagination-info');
+            const mcqSearchInput = document.getElementById('mcq-search');
+            const mcqCourseFilter = document.getElementById('mcq-course-filter');
+            const mcqSubjectFilter = document.getElementById('mcq-subject-filter');
+            const mcqTopicFilter = document.getElementById('mcq-topic-filter');
+
+            function filterAndDisplayMCQs() {
+                const searchTerm = mcqSearchInput.value.toLowerCase();
+                const selectedCourse = mcqCourseFilter.value === 'all' ? 'all' : parseInt(mcqCourseFilter.value);
+                const selectedSubject = mcqSubjectFilter.value === 'all' ? 'all' : parseInt(mcqSubjectFilter.value);
+                const selectedTopic = mcqTopicFilter.value === 'all' ? 'all' : parseInt(mcqTopicFilter.value);
+                
+                const filteredMCQs = allMCQs.filter(mcq => {
+                    const matchesSearch = mcq.question.toLowerCase().includes(searchTerm) || mcq.options.some(option => option.toLowerCase().includes(searchTerm));
+                    const matchesCourse = selectedCourse === 'all' || mcq.courseId === selectedCourse;
+                    const matchesSubject = selectedSubject === 'all' || mcq.subjectId === selectedSubject;
+                    const matchesTopic = selectedTopic === 'all' || mcq.topicId === selectedTopic;
+                    return matchesSearch && matchesCourse && matchesSubject && matchesTopic;
+                });
+
+                displayMCQs(filteredMCQs, mcqCurrentPage, mcqRecordsPerPage);
+            }
+
+            function displayMCQs(mcqData, page, records) {
+                const startIndex = (page - 1) * records;
+                const endIndex = startIndex + records;
+                const paginatedMCQs = mcqData.slice(startIndex, endIndex);
+
+                mcqListContainer.innerHTML = `
+                    <li class="py-4 flex items-start justify-between">
+                        <span class="text-md font-medium font-bold w-1/12">Action</span>
+                        <span class="text-md font-medium font-bold w-1/2">Question</span>
+                        <span class="text-md font-medium font-bold w-1/2">Options & Correct Answer</span>
+                    </li>
+                `;
+                if (paginatedMCQs.length === 0) {
+                    mcqListContainer.innerHTML += `<li class="py-4 text-center text-gray-500 dark:text-gray-400">No questions found.</li>`;
+                }
+
+                paginatedMCQs.forEach(mcq => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'py-4 flex items-start justify-between text-sm';
+                    const optionsHtml = `
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>A) ${mcq.options[0]}</li>
+                            <li>B) ${mcq.options[1]}</li>
+                            <li>C) ${mcq.options[2]}</li>
+                            <li>D) ${mcq.options[3]}</li>
+                        </ul>
+                        <p class="mt-2 font-bold text-primaryGreen">Correct Answer: ${mcq.correct}</p>
+                    `;
+                    listItem.innerHTML = `
+                        <div class="w-1/12">
+                            <a href="#" class="text-primaryOrange hover:text-primaryGreen transition-colors duration-200" title="Edit MCQ">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                </svg>
+                            </a>
+                        </div>
+                        <span class="w-1/2">${mcq.question}</span>
+                        <span class="w-1/2">${optionsHtml}</span>
+                    `;
+                    mcqListContainer.appendChild(listItem);
+                });
+
+                updateMCQPaginationControls(mcqData.length);
+            }
+
+            function updateMCQPaginationControls(totalItems) {
+                const totalPages = Math.ceil(totalItems / mcqRecordsPerPage);
+                mcqPrevBtn.disabled = mcqCurrentPage === 1;
+                mcqNextBtn.disabled = mcqCurrentPage === totalPages || totalItems === 0;
+
+                const startRecord = (mcqCurrentPage - 1) * mcqRecordsPerPage + 1;
+                const endRecord = Math.min(mcqCurrentPage * mcqRecordsPerPage, totalItems);
+                if (totalItems > 0) {
+                    mcqPaginationInfo.textContent = `Showing ${startRecord}-${endRecord} of ${totalItems} records`;
+                } else {
+                    mcqPaginationInfo.textContent = `Showing 0 of 0 records`;
+                }
+            }
+
+            mcqRecordsPerPageSelect.addEventListener('change', (e) => {
+                mcqRecordsPerPage = parseInt(e.target.value);
+                mcqCurrentPage = 1;
+                filterAndDisplayMCQs();
+            });
+
+            mcqPrevBtn.addEventListener('click', () => {
+                if (mcqCurrentPage > 1) {
+                    mcqCurrentPage--;
+                    filterAndDisplayMCQs();
+                }
+            });
+
+            mcqNextBtn.addEventListener('click', () => {
+                const filteredMCQs = allMCQs.filter(mcq => {
+                    const searchTerm = mcqSearchInput.value.toLowerCase();
+                    const selectedCourse = mcqCourseFilter.value === 'all' ? 'all' : parseInt(mcqCourseFilter.value);
+                    const selectedSubject = mcqSubjectFilter.value === 'all' ? 'all' : parseInt(mcqSubjectFilter.value);
+                    const selectedTopic = mcqTopicFilter.value === 'all' ? 'all' : parseInt(mcqTopicFilter.value);
+
+                    const matchesSearch = mcq.question.toLowerCase().includes(searchTerm) || mcq.options.some(option => option.toLowerCase().includes(searchTerm));
+                    const matchesCourse = selectedCourse === 'all' || mcq.courseId === selectedCourse;
+                    const matchesSubject = selectedSubject === 'all' || mcq.subjectId === selectedSubject;
+                    const matchesTopic = selectedTopic === 'all' || mcq.topicId === selectedTopic;
+                    return matchesSearch && matchesCourse && matchesSubject && matchesTopic;
+                });
+                const totalPages = Math.ceil(filteredMCQs.length / mcqRecordsPerPage);
+                if (mcqCurrentPage < totalPages) {
+                    mcqCurrentPage++;
+                    filterAndDisplayMCQs();
+                }
+            });
+            
+            mcqSearchInput.addEventListener('input', () => {
+                mcqCurrentPage = 1;
+                filterAndDisplayMCQs();
+            });
+            mcqCourseFilter.addEventListener('change', () => {
+                mcqCurrentPage = 1;
+                filterAndDisplayMCQs();
+            });
+            mcqSubjectFilter.addEventListener('change', () => {
+                mcqCurrentPage = 1;
+                filterAndDisplayMCQs();
+            });
+            mcqTopicFilter.addEventListener('change', () => {
+                mcqCurrentPage = 1;
+                filterAndDisplayMCQs();
+            });
+
+            // --- Written Question Data with proper Course/Subject/Topic mapping ---
+            const allWrittenQuestions = [
+                { id: 1, question: 'Explain the main causes of the French Revolution.', answer: 'The main causes were social inequality, economic hardship, and the influence of Enlightenment ideas.', courseId: 2, subjectId: 2, topicId: 1 },
+                { id: 2, question: 'Describe Newton\'s three laws of motion.', answer: 'First law: An object remains at rest or in uniform motion unless acted upon by a net force. Second law: The force on an object is equal to its mass times its acceleration (F=ma). Third law: For every action, there is an equal and opposite reaction.', courseId: 4, subjectId: 3, topicId: 2 },
+                { id: 3, question: 'Write a short note on the importance of the Constitution of Bangladesh.', answer: 'The Constitution of Bangladesh establishes the nation as a secular, democratic republic, guaranteeing fundamental rights and outlining the structure of government. It represents the collective aspirations of the people for a free and just society.', courseId: 1, subjectId: 1, topicId: 3 },
+                { id: 4, question: 'Explain the process of photosynthesis in plants.', answer: 'Photosynthesis is the process used by plants to convert light energy into chemical energy, creating sugar. It requires sunlight, water, and carbon dioxide.', courseId: 3, subjectId: 4, topicId: 4 },
+                { id: 5, question: 'What are the benefits of learning a foreign language?', answer: 'Learning a foreign language improves cognitive skills, enhances memory, and provides a deeper understanding of other cultures. It can also open up career opportunities and improve problem-solving abilities.', courseId: 2, subjectId: 2, topicId: 5 },
+                { id: 6, question: 'Briefly explain the concept of digital marketing.', answer: 'Digital marketing is the use of internet-connected devices and digital channels to promote products and services. It includes SEO, social media marketing, email marketing, and content marketing.', courseId: 1, subjectId: 5, topicId: 6 },
+                { id: 7, question: 'What is the role of the World Health Organization (WHO)?', answer: 'The WHO is a specialized agency of the United Nations responsible for international public health. Its main role is to coordinate responses to health crises, set health standards, and provide technical assistance to countries.', courseId: 5, subjectId: 2, topicId: 7 },
+            ];
+
+            for (let i = 8; i <= 50; i++) {
+                 allWrittenQuestions.push({
+                    id: i,
+                    question: `This is a generic written question number ${i}. Please discuss this topic.`,
+                    answer: `This is a sample answer for written question number ${i}. It should be detailed and comprehensive.`,
+                    courseId: Math.floor(Math.random() * allCourses.length) + 1,
+                    subjectId: Math.floor(Math.random() * allSubjects.length) + 1,
+                    topicId: Math.floor(Math.random() * allTopics.length) + 1,
+                });
+            }
+
+            let writtenCurrentPage = 1;
+            let writtenRecordsPerPage = 10;
+            const writtenListContainer = document.getElementById('written-list');
+            const writtenRecordsPerPageSelect = document.getElementById('written-records-per-page');
+            const writtenPrevBtn = document.getElementById('written-prev-btn');
+            const writtenNextBtn = document.getElementById('written-next-btn');
+            const writtenPaginationInfo = document.getElementById('written-pagination-info');
+            const writtenSearchInput = document.getElementById('written-search');
+            const writtenCourseFilter = document.getElementById('written-course-filter');
+            const writtenSubjectFilter = document.getElementById('written-subject-filter');
+            const writtenTopicFilter = document.getElementById('written-topic-filter');
+
+            function filterAndDisplayWrittenQuestions() {
+                const searchTerm = writtenSearchInput.value.toLowerCase();
+                const selectedCourse = writtenCourseFilter.value === 'all' ? 'all' : parseInt(writtenCourseFilter.value);
+                const selectedSubject = writtenSubjectFilter.value === 'all' ? 'all' : parseInt(writtenSubjectFilter.value);
+                const selectedTopic = writtenTopicFilter.value === 'all' ? 'all' : parseInt(writtenTopicFilter.value);
+
+                const filteredWrittenQuestions = allWrittenQuestions.filter(q => {
+                    const matchesSearch = q.question.toLowerCase().includes(searchTerm) || q.answer.toLowerCase().includes(searchTerm);
+                    const matchesCourse = selectedCourse === 'all' || q.courseId === selectedCourse;
+                    const matchesSubject = selectedSubject === 'all' || q.subjectId === selectedSubject;
+                    const matchesTopic = selectedTopic === 'all' || q.topicId === selectedTopic;
+                    return matchesSearch && matchesCourse && matchesSubject && matchesTopic;
+                });
+
+                displayWrittenQuestions(filteredWrittenQuestions, writtenCurrentPage, writtenRecordsPerPage);
+            }
+
+            function displayWrittenQuestions(questionsData, page, records) {
+                const startIndex = (page - 1) * records;
+                const endIndex = startIndex + records;
+                const paginatedWrittenQuestions = questionsData.slice(startIndex, endIndex);
+
+                writtenListContainer.innerHTML = `
+                    <li class="py-4 flex items-start justify-between">
+                        <span class="text-md font-medium font-bold w-1/12">Action</span>
+                        <span class="text-md font-medium font-bold w-1/2">Question</span>
+                        <span class="text-md font-medium font-bold w-1/2">Sample Answer</span>
+                    </li>
+                `;
+                if (paginatedWrittenQuestions.length === 0) {
+                    writtenListContainer.innerHTML += `<li class="py-4 text-center text-gray-500 dark:text-gray-400">No questions found.</li>`;
+                }
+
+                paginatedWrittenQuestions.forEach(written => {
+                    const listItem = document.createElement('li');
+                    listItem.className = 'py-4 flex items-start justify-between text-sm';
+                    listItem.innerHTML = `
+                        <div class="w-1/12">
+                            <a href="#" class="text-primaryOrange hover:text-primaryGreen transition-colors duration-200" title="Edit Question">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125" />
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="w-1/2">
+                            <p class="font-bold mb-1">Question:</p>
+                            <p>${written.question}</p>
+                        </div>
+                        <div class="w-1/2">
+                            <p class="font-bold mb-1">Sample Answer:</p>
+                            <p>${written.answer}</p>
+                        </div>
+                    `;
+                    writtenListContainer.appendChild(listItem);
+                });
+
+                updateWrittenPaginationControls(questionsData.length);
+            }
+
+            function updateWrittenPaginationControls(totalItems) {
+                const totalPages = Math.ceil(totalItems / writtenRecordsPerPage);
+                writtenPrevBtn.disabled = writtenCurrentPage === 1;
+                writtenNextBtn.disabled = writtenCurrentPage === totalPages || totalItems === 0;
+
+                const startRecord = (writtenCurrentPage - 1) * writtenRecordsPerPage + 1;
+                const endRecord = Math.min(writtenCurrentPage * writtenRecordsPerPage, totalItems);
+                if (totalItems > 0) {
+                    writtenPaginationInfo.textContent = `Showing ${startRecord}-${endRecord} of ${totalItems} records`;
+                } else {
+                    writtenPaginationInfo.textContent = `Showing 0 of 0 records`;
+                }
+            }
+            
+            writtenRecordsPerPageSelect.addEventListener('change', (e) => {
+                writtenRecordsPerPage = parseInt(e.target.value);
+                writtenCurrentPage = 1;
+                filterAndDisplayWrittenQuestions();
+            });
+
+            writtenPrevBtn.addEventListener('click', () => {
+                if (writtenCurrentPage > 1) {
+                    writtenCurrentPage--;
+                    filterAndDisplayWrittenQuestions();
+                }
+            });
+
+            writtenNextBtn.addEventListener('click', () => {
+                const filteredWrittenQuestions = allWrittenQuestions.filter(q => {
+                    const searchTerm = writtenSearchInput.value.toLowerCase();
+                    const selectedCourse = writtenCourseFilter.value === 'all' ? 'all' : parseInt(writtenCourseFilter.value);
+                    const selectedSubject = writtenSubjectFilter.value === 'all' ? 'all' : parseInt(writtenSubjectFilter.value);
+                    const selectedTopic = writtenTopicFilter.value === 'all' ? 'all' : parseInt(writtenTopicFilter.value);
+
+                    const matchesSearch = q.question.toLowerCase().includes(searchTerm) || q.answer.toLowerCase().includes(searchTerm);
+                    const matchesCourse = selectedCourse === 'all' || q.courseId === selectedCourse;
+                    const matchesSubject = selectedSubject === 'all' || q.subjectId === selectedSubject;
+                    const matchesTopic = selectedTopic === 'all' || q.topicId === selectedTopic;
+                    return matchesSearch && matchesCourse && matchesSubject && matchesTopic;
+                });
+                const totalPages = Math.ceil(filteredWrittenQuestions.length / writtenRecordsPerPage);
+                if (writtenCurrentPage < totalPages) {
+                    writtenCurrentPage++;
+                    filterAndDisplayWrittenQuestions();
+                }
+            });
+            
+            writtenSearchInput.addEventListener('input', () => {
+                writtenCurrentPage = 1;
+                filterAndDisplayWrittenQuestions();
+            });
+            writtenCourseFilter.addEventListener('change', () => {
+                writtenCurrentPage = 1;
+                filterAndDisplayWrittenQuestions();
+            });
+            writtenSubjectFilter.addEventListener('change', () => {
+                writtenCurrentPage = 1;
+                filterAndDisplayWrittenQuestions();
+            });
+            writtenTopicFilter.addEventListener('change', () => {
+                writtenCurrentPage = 1;
+                filterAndDisplayWrittenQuestions();
+            });
+
+            // --- Main Content Toggle Logic ---
+            const dashboardContent = document.getElementById('dashboard-content');
+            const studentListContent = document.getElementById('student-list-content');
+            const mcqContent = document.getElementById('mcq-content');
+            const writtenContent = document.getElementById('written-content');
+            const testContent = document.getElementById('test-content');
+            const courseListContent = document.getElementById('course-list-content');
+            const subjectListContent = document.getElementById('subject-list-content');
+            const topicListContent = document.getElementById('topic-list-content');
+            const batchListContent = document.getElementById('batch-list-content');
+            const paymentCategoryContent = document.getElementById('payment-category-content');
+            const assignPaymentContent = document.getElementById('assign-payment-content');
+            const duesContent = document.getElementById('dues-content');
+            const receiveContent = document.getElementById('receive-content');
+
+            const studentMenuToggle = document.getElementById('student-menu-toggle');
+            const questionMenuToggle = document.getElementById('question-menu-toggle');
+            const questionSubmenu = document.getElementById('question-submenu');
+            const mcqMenuToggle = document.getElementById('mcq-menu-toggle');
+            const writtenMenuToggle = document.getElementById('written-menu-toggle');
+            const testMenuToggle = document.getElementById('test-menu-toggle');
+            const courseMenuToggle = document.getElementById('course-menu-toggle');
+            const subjectMenuToggle = document.getElementById('subject-menu-toggle');
+            const topicMenuToggle = document.getElementById('topic-menu-toggle');
+            const batchMenuToggle = document.getElementById('batch-menu-toggle');
+            const paymentsMenuToggle = document.getElementById('payments-menu-toggle');
+            const paymentsSubmenu = document.getElementById('payments-submenu');
+            const paymentCategoryMenuToggle = document.getElementById('payment-category-menu-toggle');
+            const assignPaymentMenuToggle = document.getElementById('assign-payment-menu-toggle');
+            const duesMenuToggle = document.getElementById('dues-menu-toggle');
+            const receiveMenuToggle = document.getElementById('receive-menu-toggle');
+            const questionToggleIcon = questionMenuToggle.querySelector('svg:last-child');
+            const paymentsToggleIcon = paymentsMenuToggle.querySelector('svg:last-child');
+            
+            function showContent(contentId) {
+                const allContents = [dashboardContent, studentListContent, mcqContent, writtenContent, testContent, courseListContent, subjectListContent, topicListContent, batchListContent, paymentCategoryContent, assignPaymentContent, duesContent, receiveContent];
+                allContents.forEach(content => content.classList.add('hidden'));
+                document.getElementById(contentId).classList.remove('hidden');
+            }
+
+            studentMenuToggle.addEventListener('click', function () {
+                showContent('student-list-content');
+                displayStudents(studentCurrentPage, studentRecordsPerPage);
+            });
+            
+            questionMenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                questionSubmenu.classList.toggle('hidden');
+                questionToggleIcon.classList.toggle('rotate-90');
+            });
+            
+            mcqMenuToggle.addEventListener('click', function () {
+                showContent('mcq-content');
+                mcqCurrentPage = 1;
+                filterAndDisplayMCQs();
+            });
+
+            writtenMenuToggle.addEventListener('click', function () {
+                showContent('written-content');
+                writtenCurrentPage = 1;
+                filterAndDisplayWrittenQuestions();
+            });
+
+            testMenuToggle.addEventListener('click', function () {
+                showContent('test-content');
+            });
+
+            courseMenuToggle.addEventListener('click', function () {
+                showContent('course-list-content');
+                displayCourses(courseCurrentPage, courseRecordsPerPage);
+            });
+
+            subjectMenuToggle.addEventListener('click', function () {
+                showContent('subject-list-content');
+                displaySubjects(subjectCurrentPage, subjectRecordsPerPage);
+            });
+
+            topicMenuToggle.addEventListener('click', function () {
+                showContent('topic-list-content');
+                displayTopics(topicCurrentPage, topicRecordsPerPage);
+            });
+            
+            batchMenuToggle.addEventListener('click', function () {
+                showContent('batch-list-content');
+                displayBatches(batchCurrentPage, batchRecordsPerPage);
+            });
+            
+            paymentsMenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                paymentsSubmenu.classList.toggle('hidden');
+                paymentsToggleIcon.classList.toggle('rotate-90');
+            });
+
+            paymentCategoryMenuToggle.addEventListener('click', function () {
+                showContent('payment-category-content');
+                displayPaymentCategories(paymentCategoryCurrentPage, paymentCategoryRecordsPerPage);
+            });
+            
+            assignPaymentMenuToggle.addEventListener('click', function () {
+                showContent('assign-payment-content');
+            });
+            
+            duesMenuToggle.addEventListener('click', function () {
+                showContent('dues-content');
+                displayDues(duesCurrentPage, duesRecordsPerPage);
+            });
+
+            receiveMenuToggle.addEventListener('click', function () {
+                showContent('receive-content');
+                displayReceivedPayments(receiveCurrentPage, receiveRecordsPerPage);
+            });
+
+            // Initial setup
+            populateFilterDropdowns('mcq-course-filter', 'mcq-subject-filter', 'mcq-topic-filter');
+            populateFilterDropdowns('written-course-filter', 'written-subject-filter', 'written-topic-filter');
+            
+            // Initial load state
+            showContent('dashboard-content');
+            displayStudents(studentCurrentPage, studentRecordsPerPage);
+            displayCourses(courseCurrentPage, courseRecordsPerPage);
+            displaySubjects(subjectCurrentPage, subjectRecordsPerPage);
+            displayTopics(topicCurrentPage, topicRecordsPerPage);
+            displayBatches(batchCurrentPage, batchRecordsPerPage);
+            displayPaymentCategories(paymentCategoryCurrentPage, paymentCategoryRecordsPerPage);
+            displayDues(duesCurrentPage, duesRecordsPerPage);
+            displayReceivedPayments(receiveCurrentPage, receiveRecordsPerPage);
+        });
+    </script>
+</body>
+</html>
