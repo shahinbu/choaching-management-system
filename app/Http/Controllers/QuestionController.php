@@ -43,8 +43,8 @@ class QuestionController extends Controller
     public function create()
     {
         $courses = Course::where('status', 'active')->get();
-        $subjects = collect();
-        $topics = collect();
+        $subjects = Subject::where('status', 'active')->with('course')->get();
+        $topics = Topic::where('status', 'active')->with('subject')->get();
 
         return view('partner.questions.create', compact('courses', 'subjects', 'topics'));
     }

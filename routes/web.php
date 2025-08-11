@@ -47,6 +47,9 @@ Route::prefix('partner')->name('partner.')->group(function () {
     // Question Management
     Route::resource('questions', QuestionController::class);
     Route::post('questions/check-duplicate', [QuestionController::class, 'checkDuplicate'])->name('questions.check-duplicate');
+    // Dependent dropdowns for Question create
+    Route::get('questions/subjects', [QuestionController::class, 'getSubjects'])->name('questions.subjects');
+    Route::get('questions/topics', [QuestionController::class, 'getTopics'])->name('questions.topics');
     
     // Question Set Management
     Route::resource('question-sets', QuestionSetController::class);

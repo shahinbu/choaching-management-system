@@ -23,7 +23,7 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
                 <div>
                     <label class="block text-sm font-medium mb-2">Course</label>
-                    <select id="course" class="w-full rounded-md border p-2">
+                    <select id="course_id" name="course_id" class="w-full rounded-md border p-2">
                         <option value="">Select Course</option>
                         @foreach($courses as $course)
                             <option value="{{ $course->id }}">{{ $course->name }}</option>
@@ -32,33 +32,19 @@
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-2">Subject</label>
-                    <select id="subject" class="w-full rounded-md border p-2">
+                    <select id="subject_id" name="subject_id" class="w-full rounded-md border p-2">
                         <option value="">Select Subject</option>
-                        <option value="">Physics</option>
-                        <option value="">History</option>
-                        <option value="">Math</option>
-                        <option value="">English</option>
-                        <option value="">Bangla</option>
-                        <option value="">Geography</option>
-                        <option value="">Biology</option>
-                        <option value="">Chemistry</option>
                         @foreach($subjects as $subject)
-                            <option value="{{ $subject->id }}">{{ $subject->name }}</option>
-                        @endforeach 
+                            <option value="{{ $subject->id }}" data-course-id="{{ $subject->course_id }}">{{ $subject->name }} ({{ $subject->course->name }})</option>
+                        @endforeach
                     </select>
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-2">Topic</label>
                     <select name="topic_id" id="topic_id" class="w-full rounded-md border p-2" required>
                         <option value="">Select Topic</option>
-                        <option value="">Topic 1</option>
-                        <option value="">Topic 2</option>
-                        <option value="">Topic 3</option>
-                        <option value="">Topic 4</option>
-                        <option value="">Topic 5</option>
-                        <option value="">Topic 6</option>
                         @foreach($topics as $topic)
-                            <option value="{{ $topic->id }}">{{ $topic->name }}</option>
+                            <option value="{{ $topic->id }}" data-subject-id="{{ $topic->subject_id }}">{{ $topic->name }} ({{ $topic->subject->name }})</option>
                         @endforeach
                     </select>
                 </div>
@@ -143,4 +129,60 @@
         </form>
     </div>
 </div>
+@push('scripts')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const courseSelect = document.getElementById('course_id');
+        const subjectSelect = document.getElementById('subject_id');
+        const topicSelect = document.getElementById('topic_id');
+
+        // Store original options
+        const allSubjects = Array.from(subjectSelect.querySelectorAll('option')).slice(1); // Skip first "Select Subject"
+        const allTopics = Array.from(topicSelect.querySelectorAll('option')).slice(1); // Skip first "Select Topic"
+
+        function filterSubjects(courseId) {
+            // Clear subjects except first option
+            subjectSelect.innerHTML = '<option value="">Select Subject</option>';
+            
+            if (!courseId) {
+                // Show all subjects if no course selected
+                allSubjects.forEach(opt => subjectSelect.appendChild(opt.cloneNode(true)));
+                return;
+            }
+
+            // Filter subjects by course
+            allSubjects
+                .filter(opt => opt.dataset.courseId == courseId)
+                .forEach(opt => subjectSelect.appendChild(opt.cloneNode(true)));
+        }
+
+        function filterTopics(subjectId) {
+            // Clear topics except first option
+            topicSelect.innerHTML = '<option value="">Select Topic</option>';
+            
+            if (!subjectId) {
+                // Show all topics if no subject selected
+                allTopics.forEach(opt => topicSelect.appendChild(opt.cloneNode(true)));
+                return;
+            }
+
+            // Filter topics by subject
+            allTopics
+                .filter(opt => opt.dataset.subjectId == subjectId)
+                .forEach(opt => topicSelect.appendChild(opt.cloneNode(true)));
+        }
+
+        courseSelect?.addEventListener('change', function () {
+            const courseId = this.value;
+            filterSubjects(courseId);
+            filterTopics(''); // Reset topics when course changes
+        });
+
+        subjectSelect?.addEventListener('change', function () {
+            const subjectId = this.value;
+            filterTopics(subjectId);
+        });
+    });
+</script>
+@endpush
 @endsection 
