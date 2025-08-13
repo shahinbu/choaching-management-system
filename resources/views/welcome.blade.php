@@ -52,71 +52,148 @@
         <div class="flex items-center justify-center w-full transition-opacity opacity-100 duration-750 lg:grow starting:opacity-0">
             <main class="flex max-w-[335px] w-full flex-col-reverse lg:max-w-4xl lg:flex-row">
                 <div class="text-[13px] leading-[20px] flex-1 p-6 pb-12 lg:p-20 bg-white dark:bg-[#161615] dark:text-[#EDEDEC] shadow-[inset_0px_0px_0px_1px_rgba(26,26,0,0.16)] dark:shadow-[inset_0px_0px_0px_1px_#fffaed2d] rounded-bl-lg rounded-br-lg lg:rounded-tl-lg lg:rounded-br-none">
-                    <h1 class="mb-1 font-medium">Let's get started new</h1>
-                    <p class="mb-2 text-[#706f6c] dark:text-[#A1A09A]">Laravel has an incredibly rich ecosystem. <br>We suggest starting with the following.</p>
-                    <ul class="flex flex-col mb-4 lg:mb-6">
-                        <li class="flex items-center gap-4 py-2 relative before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A] before:top-1/2 before:bottom-0 before:left-[0.4rem] before:absolute">
-                            <span class="relative py-1 bg-white dark:bg-[#161615]">
-                                <span class="flex items-center justify-center rounded-full bg-[#FDFDFC] dark:bg-[#161615] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] w-3.5 h-3.5 border dark:border-[#3E3E3A] border-[#e3e3e0]">
-                                    <span class="rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A] w-1.5 h-1.5"></span>
-                                </span>
-                            </span>
-                            <span>
-                                Read the
-                                <a href="https://laravel.com/docs" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
-                                    <span>Documentation</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="w-2.5 h-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
-                            </span>
-                        </li>
-                        <li class="flex items-center gap-4 py-2 relative before:border-l before:border-[#e3e3e0] dark:before:border-[#3E3E3A] before:bottom-1/2 before:top-0 before:left-[0.4rem] before:absolute">
-                            <span class="relative py-1 bg-white dark:bg-[#161615]">
-                                <span class="flex items-center justify-center rounded-full bg-[#FDFDFC] dark:bg-[#161615] shadow-[0px_0px_1px_0px_rgba(0,0,0,0.03),0px_1px_2px_0px_rgba(0,0,0,0.06)] w-3.5 h-3.5 border dark:border-[#3E3E3A] border-[#e3e3e0]">
-                                    <span class="rounded-full bg-[#dbdbd7] dark:bg-[#3E3E3A] w-1.5 h-1.5"></span>
-                                </span>
-                            </span>
-                            <span>
-                                Watch video tutorials at
-                                <a href="https://laracasts.com" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433] ml-1">
-                                    <span>Laracasts</span>
-                                    <svg
-                                        width="10"
-                                        height="11"
-                                        viewBox="0 0 10 11"
-                                        fill="none"
-                                        xmlns="http://www.w3.org/2000/svg"
-                                        class="w-2.5 h-2.5"
-                                    >
-                                        <path
-                                            d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001"
-                                            stroke="currentColor"
-                                            stroke-linecap="square"
-                                        />
-                                    </svg>
-                                </a>
-                            </span>
-                        </li>
-                    </ul>
-                    <ul class="flex gap-3 text-sm leading-normal">
-                        <li>
-                            <a href="https://cloud.laravel.com" target="_blank" class="inline-block dark:bg-[#eeeeec] dark:border-[#eeeeec] dark:text-[#1C1C1A] dark:hover:bg-white dark:hover:border-white hover:bg-black hover:border-black px-5 py-1.5 bg-[#1b1b18] rounded-sm border border-black text-white text-sm leading-normal">
-                                Deploy now
+                    <h1 class="mb-4 text-2xl font-bold">Exam Management System</h1>
+                    <p class="mb-6 text-[#706f6c] dark:text-[#A1A09A]">Navigate through the application using the links below:</p>
+
+                    <!-- Authentication Routes -->
+                    <div class="mb-6">
+                        <h2 class="mb-3 text-lg font-semibold text-[#f53003] dark:text-[#FF4433]">Authentication</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <a href="{{ route('login') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Login</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Sign in to your account</span>
                             </a>
-                        </li>
-                    </ul>
+                            <a href="{{ route('register') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Register</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Create a new account</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Partner Routes -->
+                    <div class="mb-6">
+                        <h2 class="mb-3 text-lg font-semibold text-[#f53003] dark:text-[#FF4433]">Partner Dashboard</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                            <a href="{{ route('partner.dashboard') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Dashboard</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Partner overview</span>
+                            </a>
+                            <a href="{{ route('partner.courses.index') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Courses</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Manage courses</span>
+                            </a>
+                            <a href="{{ route('partner.subjects.index') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Subjects</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Manage subjects</span>
+                            </a>
+                            <a href="{{ route('partner.topics.index') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Topics</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Manage topics</span>
+                            </a>
+                            <a href="{{ route('partner.questions.index') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Questions</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Manage MCQ questions ({{ App\Models\Question::count() }} total)</span>
+                            </a>
+                            <a href="{{ route('partner.question-sets.index') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Question Sets</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Create & manage question sets</span>
+                            </a>
+                            <a href="{{ route('partner.exams.index') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Exams</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Create & manage exams</span>
+                            </a>
+                            <a href="{{ route('partner.students.index') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Students</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Manage students</span>
+                            </a>
+                            <a href="{{ route('partner.partners.index') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Partners</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Manage partners</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Student Routes -->
+                    <div class="mb-6">
+                        <h2 class="mb-3 text-lg font-semibold text-[#f53003] dark:text-[#FF4433]">Student Dashboard</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
+                            <a href="{{ route('student.dashboard') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Dashboard</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Student overview</span>
+                            </a>
+                            <a href="{{ route('student.exams.available') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Available Exams</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">Take available exams</span>
+                            </a>
+                            <a href="{{ route('student.exams.history') }}" class="block p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md hover:border-[#f53003] dark:hover:border-[#FF4433] transition-colors">
+                                <span class="font-medium">Exam History</span>
+                                <span class="block text-xs text-[#706f6c] dark:text-[#A1A09A]">View past exam results</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- Quick Actions -->
+                    <div class="mb-6">
+                        <h2 class="mb-3 text-lg font-semibold text-[#f53003] dark:text-[#FF4433]">Quick Actions</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+                            <a href="{{ route('partner.questions.create') }}" class="block p-3 bg-[#f53003] dark:bg-[#FF4433] text-white rounded-md hover:bg-opacity-90 transition-colors">
+                                <span class="font-medium">Create New Question</span>
+                                <span class="block text-xs opacity-90">Add MCQ questions to the database</span>
+                            </a>
+                            <a href="{{ route('partner.question-sets.create') }}" class="block p-3 bg-[#f53003] dark:bg-[#FF4433] text-white rounded-md hover:bg-opacity-90 transition-colors">
+                                <span class="font-medium">Create Question Set</span>
+                                <span class="block text-xs opacity-90">Select multiple questions for a set</span>
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- System Statistics -->
+                    <div class="mb-6">
+                        <h2 class="mb-3 text-lg font-semibold text-[#f53003] dark:text-[#FF4433]">System Statistics</h2>
+                        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                            <div class="text-center p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md">
+                                <div class="text-2xl font-bold text-[#f53003] dark:text-[#FF4433]">{{ App\Models\Course::count() }}</div>
+                                <div class="text-xs text-[#706f6c] dark:text-[#A1A09A]">Courses</div>
+                            </div>
+                            <div class="text-center p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md">
+                                <div class="text-2xl font-bold text-[#f53003] dark:text-[#FF4433]">{{ App\Models\Subject::count() }}</div>
+                                <div class="text-xs text-[#706f6c] dark:text-[#A1A09A]">Subjects</div>
+                            </div>
+                            <div class="text-center p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md">
+                                <div class="text-2xl font-bold text-[#f53003] dark:text-[#FF4433]">{{ App\Models\Topic::count() }}</div>
+                                <div class="text-xs text-[#706f6c] dark:text-[#A1A09A]">Topics</div>
+                            </div>
+                            <div class="text-center p-3 border border-[#e3e3e0] dark:border-[#3E3E3A] rounded-md">
+                                <div class="text-2xl font-bold text-[#f53003] dark:text-[#FF4433]">{{ App\Models\Question::count() }}</div>
+                                <div class="text-xs text-[#706f6c] dark:text-[#A1A09A]">Questions</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- External Links -->
+                    <div class="mb-6">
+                        <h2 class="mb-3 text-lg font-semibold text-[#f53003] dark:text-[#FF4433]">External Resources</h2>
+                        <div class="flex flex-wrap gap-3">
+                            <a href="https://laravel.com/docs" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433]">
+                                <span>Laravel Documentation</span>
+                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5">
+                                    <path d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001" stroke="currentColor" stroke-linecap="square"/>
+                                </svg>
+                            </a>
+                            <a href="https://laracasts.com" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433]">
+                                <span>Laracasts</span>
+                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5">
+                                    <path d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001" stroke="currentColor" stroke-linecap="square"/>
+                                </svg>
+                            </a>
+                            <a href="https://tailwindcss.com" target="_blank" class="inline-flex items-center space-x-1 font-medium underline underline-offset-4 text-[#f53003] dark:text-[#FF4433]">
+                                <span>Tailwind CSS</span>
+                                <svg width="10" height="11" viewBox="0 0 10 11" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-2.5 h-2.5">
+                                    <path d="M7.70833 6.95834V2.79167H3.54167M2.5 8L7.5 3.00001" stroke="currentColor" stroke-linecap="square"/>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
                 </div>
                 <div class="bg-[#fff2f2] dark:bg-[#1D0002] relative lg:-ml-px -mb-px lg:mb-0 rounded-t-lg lg:rounded-t-none lg:rounded-r-lg aspect-[335/376] lg:aspect-auto w-full lg:w-[438px] shrink-0 overflow-hidden">
                     {{-- Laravel Logo --}}

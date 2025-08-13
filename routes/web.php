@@ -28,6 +28,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Include authentication routes
+require __DIR__.'/auth.php';
+
 // Public Question Set View
 Route::get('/question-sets/{id}/public', [App\Http\Controllers\QuestionSetController::class, 'publicView'])->name('partner.question-sets.public');
 
