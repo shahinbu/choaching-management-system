@@ -28,6 +28,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// Public Question Set View
+Route::get('/question-sets/{id}/public', [App\Http\Controllers\QuestionSetController::class, 'publicView'])->name('partner.question-sets.public');
+
 // Partner Routes (Coaching Center)
 Route::prefix('partner')->name('partner.')->group(function () {
     Route::get('/', [PartnerDashboardController::class, 'index'])->name('dashboard');
@@ -55,6 +58,13 @@ Route::prefix('partner')->name('partner.')->group(function () {
     Route::resource('question-sets', QuestionSetController::class);
     Route::post('question-sets/{questionSet}/add-questions', [QuestionSetController::class, 'addQuestions'])->name('question-sets.add-questions');
     Route::delete('question-sets/{questionSet}/remove-question/{question}', [QuestionSetController::class, 'removeQuestion'])->name('question-sets.remove-question');
+    
+    // Question Set Additional Actions
+    Route::get('question-sets/{questionSet}/download-pdf', [QuestionSetController::class, 'downloadPdf'])->name('question-sets.download-pdf');
+    Route::get('question-sets/{questionSet}/download-word', [QuestionSetController::class, 'downloadWord'])->name('question-sets.download-word');
+    Route::get('question-sets/{questionSet}/share', [QuestionSetController::class, 'share'])->name('question-sets.share');
+    Route::get('question-sets/{questionSet}/duplicate', [QuestionSetController::class, 'duplicate'])->name('question-sets.duplicate');
+    Route::get('question-sets/questions/filter', [QuestionSetController::class, 'getQuestions'])->name('question-sets.questions');
     
     // Exam Management
     Route::resource('exams', ExamController::class);
